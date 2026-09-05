@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Scoutie+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba</title>
+</head>
+<body>
+
+    <header>
+        <nav class="menu-nav">
+            <div class="logo-container">
+                <h1>Cotizador</h1>
+            </div>
+            <div class="nav-list">
+                <ul>
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="">Servicios</a></li>
+                    <li><a href=""><span id="contact-link">Contacto</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div  class="window not-show">
+
+            <div class="window-header">
+                <div>
+                    <p>Title</p>
+                </div>
+                <div><button id="window-close">X</button></div>
+
+            </div>
+
+            <div class="window-content">
+                
+                <p>Mensaje</p>
+
+                <button>OK</button>
+
+            </div>
+
+        </div>
+
+        <!-- Title and subtitle -->
+        <section>
+
+            <div class="titles">
+
+                <button class="show-window">Abrir</button>
+
+
+                <h1>Cotizador de sitio web</h1>
+                <p>Completa el formulario para generar una cotizacion estimada</p>
+            </div>
+
+            <div class="form-container">
+                <form method="post">
+                    
+                    <label for="nombre-cliente" class="main-input">Nombre del cliente</label>
+                    <input type="text" name="nombre-cliente" id="nombre-cliente" placeholder="Ej. Ana Lopez">
+                    
+                    <label for="numero-pagina" class="main-input">Numero de paginas</label>
+                    <input type="number" name="numero-pagina" id="numero-pagina" placeholder="Ej. 5">
+                    
+                    <!-- Servicios Adicionales -->
+                    
+                    <div class="extra-services">
+
+                        <h3>Servicios adicionales</h3>
+
+                        <div class="option">
+                            <label for="dominio" class="info">
+                            <input class="form-check-input" type="checkbox" id="dominio" name="dominio" data-precio="600">
+                            <p>Dominio</p>
+                            </label>
+                            <p class="price">$600</p>
+                        </div>
+                        <hr>
+                        
+                        <div class="option">
+                            <label for="hosting" class="info">
+                            <input class="form-check-input" type="checkbox" id="hosting" name="hosting" data-precio="1500">
+                            <p>Hosting</p>
+                            </label>
+                            <p class="price">$1500</p>
+                        </div>
+                        <hr>
+                        
+                        <div class="option">
+                            <label for="bd" class="info">
+                            <input class="form-check-input" type="checkbox" id="bd" name="bd" data-precio="7000">
+                            <p>Base de datos</p>
+                            </label>
+                            <p class="price">$7000</p>
+                        </div>
+                        <hr>
+
+                        <div class="option">
+                            <label for="changes" class="info">
+                            <input class="form-check-input" type="checkbox" id="changes" name="changes" data-precio="2000">
+                            <p>Cambios del dev</p>
+                            </label>
+                            <p class="price">$2000</p>
+                        </div>
+                        <hr>
+
+                        <div class="option">
+                            <label for="seo" class="info">
+                            <input class="form-check-input" type="checkbox" id="seo" name="seo" data-precio="2000">
+                            <p>SEO</p>
+                            </label>
+                            <p class="price">$2000</p>
+                        </div>
+                        <hr>
+
+
+                    </div>
+                    
+                    <button type="button" id="cotization-button">Calcular cotizacion</button>
+                    
+                    <button type="button">Limpiar</button>
+                    
+                </form>
+                <div class="total">Total: <span id="total">0</span></div>
+            </div>
+
+            <aside>
+                
+                <div class="initial-info">
+                    <h2>RESULTADO</h2>
+                    <h3>Aun no hay cotizacion</h3>
+                    <p>Ingresa los datos del cliente y selecciona los servicios</p>
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+    <footer>
+        2026 Derechos Reservados
+    </footer>
+
+    <script>
+        const dominio = document.querySelector("#dominio");
+        const hosting = document.querySelector("#hosting");
+        const bd = document.querySelector("#bd");
+        const changes = document.querySelector("#changes");
+        const seo = document.querySelector("#seo");
+
+        var showWindow = document.querySelector(".show-window");
+        var closeWindow = document.querySelector("#window-close");
+
+
+       document.getElementById("total");
+
+        // console.log(Number(dominio.dataset.precio));
+        // console.log(Number(hosting.dataset.precio));
+        // console.log(Number(bd.dataset.precio));
+        // console.log(Number(changes.dataset.precio));
+        // console.log(Number(seo.dataset.precio));
+
+        var total = 0;
+        var win = document.querySelector(".window");
+
+        showWindow.addEventListener("click", function() {
+           console.log("Click en abrir")
+           win.classList.add("show");
+           
+        });
+
+        closeWindow.addEventListener("click", function() {
+            win.classList.remove("show");
+            win.classList.add("not-show");
+        });
+
+            // Dominio Event Listener
+            dominio.addEventListener("click", function () {
+                if (dominio.checked) {
+                    total+= parseInt(dominio.dataset.precio);
+                    console.log("Dominio seleccionado: " + total)
+                }else{
+                    total-= parseInt(dominio.dataset.precio);
+                    console.log("Dominio no seleccionado")
+                }
+                document.getElementById("total").textContent = total;
+            })
+
+            // Hosting Event Listener
+            hosting.addEventListener("click", function () {
+                if (hosting.checked) {
+                    total+= parseInt(hosting.dataset.precio);
+                    console.log("Hosting seleccionado: " + total)
+                }else{
+                    total-= parseInt(hosting.dataset.precio);
+                    console.log("Hosting no seleccionado")
+                }
+                document.getElementById("total").textContent = total;
+            })
+
+            // bd Event Listener
+            bd.addEventListener("click", function () {
+                if (bd.checked) {
+                    total+= parseInt(bd.dataset.precio);
+                    console.log("Base de datos seleccionada: " + total)
+                }else{
+                    total-= parseInt(bd.dataset.precio);
+                    console.log("Base de datos no seleccionada")
+                }
+                document.getElementById("total").textContent = total;
+            })
+
+            // changes Event Listener
+            changes.addEventListener("click", function () {
+                if (changes.checked) {
+                    total+= parseInt(changes.dataset.precio);
+                    console.log("Cambios seleccionados: " + total);
+                }else{
+                    total-= parseInt(changes.dataset.precio);
+                    console.log("Cambios no seleccionados")
+                }
+                document.getElementById("total").textContent = total;
+            })
+
+            // SEO Event Listener
+            seo.addEventListener("click", function () {
+                if (seo.checked) {
+                    total+= parseInt(seo.dataset.precio);
+                    console.log("SEO seleccionado: " + total)
+                }else{
+                    total-= parseInt(seo.dataset.precio);
+                    console.log("SEO no seleccionado")
+                }
+                document.getElementById("total").textContent = total;
+            })
+    </script>
+</body>
+</html>
