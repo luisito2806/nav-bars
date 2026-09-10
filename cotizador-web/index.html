@@ -18,132 +18,130 @@
     <header>
         <nav class="menu-nav">
             <div class="logo-container">
-                <h1>Cotizador</h1>
+                <h1>Cotizador web</h1>
             </div>
-            <div class="nav-list">
-                <ul>
-                    <li><a href="">Inicio</a></li>
-                    <li><a href="">Servicios</a></li>
-                    <li><a href=""><span id="contact-link">Contacto</span></a></li>
-                </ul>
-            </div>
+            
         </nav>
     </header>
 
     <main>
 
-        <div  class="window not-show">
-
-            <div class="window-header">
-                <div>
-                    <p>Title</p>
-                </div>
-                <div><button id="window-close">X</button></div>
-
-            </div>
-
-            <div class="window-content">
-                
-                <p>Mensaje</p>
-
-                <button>OK</button>
-
-            </div>
-
+        <div class="window not-show">
+    <div style="width: 350px; margin: 100px auto; background-color: white; border-radius: 8px; overflow: hidden;">
+        
+        <div class="window-header">
+            <p>Tu cotización</p>
+            <button id="window-close">X</button>
         </div>
 
+        <div class="window-content" style="margin: 0; width: 100%;">
+            <h3 id="result-cliente"></h3>
+            <p id="result-paginas"></p>
+            <ul id="result-servicios" style="text-align: left; margin: 10px 0 10px 20px;"></ul>
+            
+            <hr style="width: 100%; margin: 8px 0;">
+            <p id="result-subtotal"></p>
+            <p id="result-cupon-texto" style="color: green; font-weight: bold;"></p>
+            <p id="result-iva"></p>
+            <h4 id="result-total" style="margin-top: 5px;"></h4>
+
+            <button id="window-ok" style="margin-top: 10px;">OK</button>
+        </div>
+
+    </div>
+</div>
+
         <!-- Title and subtitle -->
-        <section>
+      <section>
 
-            <div class="titles">
+    <div class="titles">
+        <h1>Cotizador de sitio web</h1>
+    </div>
 
-                <button class="show-window">Abrir</button>
+    <!-- Columna 1: Formulario -->
+    <div class="form-container">
+        <form id="form-cotizador">
+            
+            <label for="nombre-cliente" class="main-input">Nombre del cliente</label>
+            <input type="text" name="nombre-cliente" id="nombre-cliente" placeholder="Ej. Ana Lopez">
+            
+            <label for="numero-pagina" class="main-input">Número de páginas</label>
+            <input type="number" name="numero-pagina" id="numero-pagina" placeholder="Ej. 5" min="1">
+            
+            <!-- Servicios Adicionales -->
+            <div class="extra-services">
+                <h3>Servicios adicionales</h3>
 
+                <div class="option">
+                    <label for="dominio" class="info">
+                        <input class="form-check-input" type="checkbox" id="dominio" name="dominio" data-precio="600">
+                        <p>Dominio</p>
+                    </label>
+                    <p class="price">$600</p>
+                </div>
+                <hr>
+                
+                <div class="option">
+                    <label for="hosting" class="info">
+                        <input class="form-check-input" type="checkbox" id="hosting" name="hosting" data-precio="1500">
+                        <p>Hosting</p>
+                    </label>
+                    <p class="price">$1500</p>
+                </div>
+                <hr>
+                
+                <div class="option">
+                    <label for="bd" class="info">
+                        <input class="form-check-input" type="checkbox" id="bd" name="bd" data-precio="7000">
+                        <p>Base de datos</p>
+                    </label>
+                    <p class="price">$7000</p>
+                </div>
+                <hr>
 
-                <h1>Cotizador de sitio web</h1>
-                <p>Completa el formulario para generar una cotizacion estimada</p>
+                <div class="option">
+                    <label for="changes" class="info">
+                        <input class="form-check-input" type="checkbox" id="changes" name="changes" data-precio="2000">
+                        <p>Cambios del dev</p>
+                    </label>
+                    <p class="price">$2000</p>
+                </div>
+                <hr>
+
+                <div class="option">
+                    <label for="seo" class="info">
+                        <input class="form-check-input" type="checkbox" id="seo" name="seo" data-precio="2000">
+                        <p>SEO</p>
+                    </label>
+                    <p class="price">$2000</p>
+                </div>
+                <hr>
             </div>
 
-            <div class="form-container">
-                <form method="post">
-                    
-                    <label for="nombre-cliente" class="main-input">Nombre del cliente</label>
-                    <input type="text" name="nombre-cliente" id="nombre-cliente" placeholder="Ej. Ana Lopez">
-                    
-                    <label for="numero-pagina" class="main-input">Numero de paginas</label>
-                    <input type="number" name="numero-pagina" id="numero-pagina" placeholder="Ej. 5">
-                    
-                    <!-- Servicios Adicionales -->
-                    
-                    <div class="extra-services">
+            <!-- Cupón -->
+            <div class="cupon-container">
+                <label for="cupon" class="main-input">Cupón de descuento</label>
+                <input type="text" id="cupon" placeholder="Escribe tu cupón aquí">
+                <small id="mensaje-cupon"></small>
+            </div>
 
-                        <h3>Servicios adicionales</h3>
+            <button type="button" id="cotization-button">Calcular cotización</button>
+            <button type="reset" id="limpiar-button">Limpiar</button>
 
-                        <div class="option">
-                            <label for="dominio" class="info">
-                            <input class="form-check-input" type="checkbox" id="dominio" name="dominio" data-precio="600">
-                            <p>Dominio</p>
-                            </label>
-                            <p class="price">$600</p>
-                        </div>
-                        <hr>
-                        
-                        <div class="option">
-                            <label for="hosting" class="info">
-                            <input class="form-check-input" type="checkbox" id="hosting" name="hosting" data-precio="1500">
-                            <p>Hosting</p>
-                            </label>
-                            <p class="price">$1500</p>
-                        </div>
-                        <hr>
-                        
-                        <div class="option">
-                            <label for="bd" class="info">
-                            <input class="form-check-input" type="checkbox" id="bd" name="bd" data-precio="7000">
-                            <p>Base de datos</p>
-                            </label>
-                            <p class="price">$7000</p>
-                        </div>
-                        <hr>
+        </form>
+    </div>
 
-                        <div class="option">
-                            <label for="changes" class="info">
-                            <input class="form-check-input" type="checkbox" id="changes" name="changes" data-precio="2000">
-                            <p>Cambios del dev</p>
-                            </label>
-                            <p class="price">$2000</p>
-                        </div>
-                        <hr>
+    <!-- Columna 2: Vista previa con la Imagen -->
+    <aside>
+        <h2>Ejemplo de diseño</h2>
+        <p>Así podría verse tu sitio web final:</p>
+        <img src="8884276.jpg" alt="Muestra del sitio" class="imagen-muestra">
+    </aside>
 
-                        <div class="option">
-                            <label for="seo" class="info">
-                            <input class="form-check-input" type="checkbox" id="seo" name="seo" data-precio="2000">
-                            <p>SEO</p>
-                            </label>
-                            <p class="price">$2000</p>
-                        </div>
-                        <hr>
-
-
-                    </div>
-                    
-                    <button type="button" id="cotization-button">Calcular cotizacion</button>
-                    
-                    <button type="button">Limpiar</button>
+</section>
                     
                 </form>
-                <div class="total">Total: <span id="total">0</span></div>
             </div>
-
-            <aside>
-                
-                <div class="initial-info">
-                    <h2>RESULTADO</h2>
-                    <h3>Aun no hay cotizacion</h3>
-                    <p>Ingresa los datos del cliente y selecciona los servicios</p>
-                </div>
-
-            </aside>
 
         </section>
 
@@ -154,97 +152,102 @@
     </footer>
 
     <script>
-        const dominio = document.querySelector("#dominio");
-        const hosting = document.querySelector("#hosting");
-        const bd = document.querySelector("#bd");
-        const changes = document.querySelector("#changes");
-        const seo = document.querySelector("#seo");
+    const dominio = document.querySelector("#dominio");
+    const hosting = document.querySelector("#hosting");
+    const bd = document.querySelector("#bd");
+    const changes = document.querySelector("#changes");
+    const seo = document.querySelector("#seo");
 
-        var showWindow = document.querySelector(".show-window");
-        var closeWindow = document.querySelector("#window-close");
+    const win = document.querySelector(".window");
+    const closeWindow = document.querySelector("#window-close");
+    const windowOk = document.querySelector("#window-ok");
+    const cotizarBtn = document.querySelector("#cotization-button");
 
+    closeWindow.addEventListener("click", function() {
+        win.classList.remove("show");
+        win.classList.add("not-show");
+    });
 
-       document.getElementById("total");
+    windowOk.addEventListener("click", function () {
+        win.classList.remove("show");
+        win.classList.add("not-show");
+    });
 
-        // console.log(Number(dominio.dataset.precio));
-        // console.log(Number(hosting.dataset.precio));
-        // console.log(Number(bd.dataset.precio));
-        // console.log(Number(changes.dataset.precio));
-        // console.log(Number(seo.dataset.precio));
+    cotizarBtn.addEventListener("click", function () {
+        const nombre = document.querySelector("#nombre-cliente").value || "Sin nombre";
+        const paginas = parseInt(document.querySelector("#numero-pagina").value) || 0;
+        const textoCupon = document.querySelector("#cupon").value.trim().toLowerCase();
 
-        var total = 0;
-        var win = document.querySelector(".window");
+        // 1. CÁLCULO DE PÁGINAS
+        let costoPaginas = 0;
+        if (paginas >= 1 && paginas <= 3) {
+            costoPaginas = 5000;
+        } else if (paginas > 3) {
+            costoPaginas = 5000 + ((paginas - 3) * 2000);
+        }
 
-        showWindow.addEventListener("click", function() {
-           console.log("Click en abrir")
-           win.classList.add("show");
-           
+        // 2. CÁLCULO DE SERVICIOS SELECCIONADOS
+        let costoServicios = 0;
+        const servicios = [
+            { el: dominio, label: "Dominio" },
+            { el: hosting, label: "Hosting" },
+            { el: bd, label: "Base de datos" },
+            { el: changes, label: "Cambios del dev" },
+            { el: seo, label: "SEO" }
+        ];
+
+        const lista = document.getElementById("result-servicios");
+        lista.innerHTML = "";
+
+        servicios.forEach(s => {
+            if (s.el.checked) {
+                const precio = parseInt(s.el.dataset.precio);
+                costoServicios += precio;
+
+                const li = document.createElement("li");
+                li.textContent = s.label + " - $" + precio;
+                lista.appendChild(li);
+            }
         });
 
-        closeWindow.addEventListener("click", function() {
-            win.classList.remove("show");
-            win.classList.add("not-show");
-        });
+        // 3. SUBTOTAL (Páginas + Servicios)
+        let subtotal = costoPaginas + costoServicios;
 
-            // Dominio Event Listener
-            dominio.addEventListener("click", function () {
-                if (dominio.checked) {
-                    total+= parseInt(dominio.dataset.precio);
-                    console.log("Dominio seleccionado: " + total)
-                }else{
-                    total-= parseInt(dominio.dataset.precio);
-                    console.log("Dominio no seleccionado")
-                }
-                document.getElementById("total").textContent = total;
-            })
+        // 4. VALIDACIÓN DE CUPÓN 
+        let descuento = 0;
+        const mensajeCuponUI = document.getElementById("mensaje-cupon");
+        const textoCuponModal = document.getElementById("result-cupon-texto");
 
-            // Hosting Event Listener
-            hosting.addEventListener("click", function () {
-                if (hosting.checked) {
-                    total+= parseInt(hosting.dataset.precio);
-                    console.log("Hosting seleccionado: " + total)
-                }else{
-                    total-= parseInt(hosting.dataset.precio);
-                    console.log("Hosting no seleccionado")
-                }
-                document.getElementById("total").textContent = total;
-            })
+        if (textoCupon === "septiembre") {
+            descuento = subtotal * 0.15; 
+            mensajeCuponUI.textContent = "¡Cupón 'septiembre' aplicado (15% OFF)!";
+            mensajeCuponUI.style.color = "green";
+            textoCuponModal.textContent = "Descuento cupón: -$" + descuento.toFixed(2);
+        } else if (textoCupon !== "") {
+            mensajeCuponUI.textContent = "Cupón inválido";
+            mensajeCuponUI.style.color = "red";
+            textoCuponModal.textContent = "";
+        } else {
+            mensajeCuponUI.textContent = "";
+            textoCuponModal.textContent = "";
+        }
 
-            // bd Event Listener
-            bd.addEventListener("click", function () {
-                if (bd.checked) {
-                    total+= parseInt(bd.dataset.precio);
-                    console.log("Base de datos seleccionada: " + total)
-                }else{
-                    total-= parseInt(bd.dataset.precio);
-                    console.log("Base de datos no seleccionada")
-                }
-                document.getElementById("total").textContent = total;
-            })
+        let subtotalConDescuento = subtotal - descuento;
 
-            // changes Event Listener
-            changes.addEventListener("click", function () {
-                if (changes.checked) {
-                    total+= parseInt(changes.dataset.precio);
-                    console.log("Cambios seleccionados: " + total);
-                }else{
-                    total-= parseInt(changes.dataset.precio);
-                    console.log("Cambios no seleccionados")
-                }
-                document.getElementById("total").textContent = total;
-            })
+        // 5. CÁLCULO DEL IVA 
+        let iva = subtotalConDescuento * 0.16;
+        let totalFinal = subtotalConDescuento + iva;
 
-            // SEO Event Listener
-            seo.addEventListener("click", function () {
-                if (seo.checked) {
-                    total+= parseInt(seo.dataset.precio);
-                    console.log("SEO seleccionado: " + total)
-                }else{
-                    total-= parseInt(seo.dataset.precio);
-                    console.log("SEO no seleccionado")
-                }
-                document.getElementById("total").textContent = total;
-            })
-    </script>
+        // 6. MOSTRAR RESULTADOS EN MODAL
+        document.getElementById("result-cliente").textContent = "Cliente: " + nombre;
+        document.getElementById("result-paginas").textContent = "Páginas (" + paginas + "): $" + costoPaginas;
+        document.getElementById("result-subtotal").textContent = "Subtotal: $" + subtotal.toFixed(2);
+        document.getElementById("result-iva").textContent = "IVA (16%): $" + iva.toFixed(2);
+        document.getElementById("result-total").textContent = "Total: $" + totalFinal.toFixed(2);
+
+        win.classList.remove("not-show");
+        win.classList.add("show");
+    });
+</script>
 </body>
 </html>

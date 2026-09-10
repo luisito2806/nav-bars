@@ -7,7 +7,7 @@
 /* Nav Bar customization */
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     background-color: rgb(0, 0, 40);
     padding: 15px 30px;
@@ -36,15 +36,13 @@ nav {
 }
 
 .window {
-    z-index: 10;
-    position: absolute;
-
-    width: 300px;
-    height: 150px;
+    position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
-    margin: 100px auto;
-    box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 10;
 }
 
 .not-show {
@@ -55,14 +53,25 @@ nav {
     display: block;
 }
 
+
+.window-content {
+    background-color: white;
+    width: 350px;             
+    margin: 100px auto;       
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
 .window-header {
     display: flex;
     justify-content: space-between;    
     background-color: rgb(0, 0, 40);
+    padding: 8px 12px;
+    border-radius: 8px 8px 0 0;
 }
 
 .window-header p {
-    padding-left: 5px;
     color: white;
 }
 
@@ -70,17 +79,7 @@ nav {
     background-color: red;
     color: white;
     font-weight: bold;
-    padding: 0px 2px;
-}
-
-.window-content {
-    background-color: rgb(222, 218, 218);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    padding: 0px 5px;
 }
 
 /* Body Customization */
@@ -91,9 +90,11 @@ main {
 }
 
 .titles {
+    justify-content: center;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    text-align: center;
 }
 
 section {
@@ -167,10 +168,31 @@ button {
 
 aside {
     flex: 1;
-    background-color: rgb(240, 240, 240);
+    background-color: white; /* Tarjeta blanca como el formulario */
     border-radius: 10px;
     box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
-    padding: 20px 40px;
+    padding: 20px;
+    text-align: center;
+}
+
+aside h2 {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+aside p {
+    font-size: 0.9em;
+    color: gray;
+    margin-bottom: 15px;
+}
+
+/* Hace que la imagen se adapte perfectamente al recuadro */
+aside img {
+    max-width: 100%;    /* Asegura que no sea más ancha que la tarjeta */
+    height: auto;        /* Mantiene la proporción original */
+    max-height: 350px;   /* Limita la altura para que no quede gigante */
+    object-fit: contain; /* Ajusta la imagen sin recortarla */
+    border-radius: 8px;
 }
 
 .initial-info h2 {
@@ -188,5 +210,47 @@ footer {
     color: white;
     padding: 20px 40px;
     text-align: center;
+    font-weight: bold;
+}
+/* Layout en dos columnas: Formulario e Imagen */
+.cotizador-grid {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* Imagen lateral */
+.preview-container {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    text-align: center;
+}
+
+.img-preview {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+
+/* Campo del Cupón */
+.cupon-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+#cupon {
+    padding: 4px 8px;
+}
+
+#mensaje-cupon {
+    font-size: 0.85em;
     font-weight: bold;
 }
